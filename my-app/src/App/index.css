@@ -1,0 +1,59 @@
+.InputContainer{
+    position: absolute;
+    border-radius: 50px;
+    width: 125vh;
+    height: 60px;
+    bottom: 0;
+    left: 43vh;
+    margin-bottom: 25px;
+    background-color: #F6F6F6;
+}
+
+.InputBox{
+    position: relative;
+    border-radius: 50px;
+    border: none;
+    width: 105vh;
+    height: 59px;
+    background-color: #F6F6F6;
+    margin-left: 30px;
+}
+
+.InputBox:focus {
+    outline: none;
+}
+
+.SubmitBtn{
+    background-image: url('./Assets/send.png'); /* Replace 'your-svg-image.svg' with the path to your SVG image */
+    background-size: contain; /* Adjust this property to control how the SVG image fits within the button */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    width: 30px; /* Adjust the width and height to fit your button size */
+    position: absolute;
+    height: 30px;
+    border: none; /* Remove the default button border */
+    cursor: pointer; /* Change the cursor to a pointer on hover for better user experience */
+    margin-top: 13px;
+    margin-left: 60px;
+}
+
+/* Style for the file input (hidden) */
+.imageInput{
+    display: none; /* Hide the default file input */
+    }
+
+    /* Style for the custom button label */
+    .imageInput-label {
+    background-image: url('./Assets/image.png'); /* Replace with your image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 35px; 
+    position: absolute;
+    height: 35px;
+    cursor: pointer;
+    display: inline-block;
+    text-indent: -9999px; /* Hide the text content of the label */
+    margin-top: 9px;
+    margin-left: 10px;
+
+    }
+    
