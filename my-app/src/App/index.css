@@ -4,9 +4,21 @@ body{
 
 .ContentBar{
     background-color: #FFFFFF;
-    position: absolute;
+    position: fixed;
     width: 40vh;
     height: 100ch;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.Content{
+    display: inline-block;
+    position: relative;
+}
+
+.QuestionDisplay{
+    position: Absolute;
+    left:41vh;
 }
 
 .Title{
@@ -19,21 +31,23 @@ body{
 }
 
 .InputContainer{
-    position: absolute;
+    position: fixed;
     border-radius: 50px;
-    width: 125vh;
+    width: 100vh;
     height: 60px;
     bottom: 0;
-    left: 43vh;
+    left: 65vh;
     margin-bottom: 25px;
     background-color: #FFFFFF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
 }
 
 .InputBox{
     position: relative;
     border-radius: 50px;
     border: none;
-    width: 105vh;
+    width: 80vh;
     height: 59px;
     background-color: #FFFFFF;
     margin-left: 30px;
@@ -75,5 +89,40 @@ body{
     margin-top: 9px;
     margin-left: 10px;
 
-    }
-    
+}
+
+.container .ql-editor{
+    width: 8.5in;
+    height: 11in;
+    padding: 1in;
+    background-color: #FFFFFF;
+}
+
+.container .ql-container.ql-snow{
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}
+
+.container .ql-toolbar.ql-snow{
+    display: flex;
+    top: 0;
+    justify-content: center;
+    position: sticky;
+    z-index: 1;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+    background-color: #FFFFFF;
+}
+
+.NavBTN{
+    border: none;
+    background-color: white;
+    margin-top: 10px;
+    font-size: large;
+    color: #777777;
+}
