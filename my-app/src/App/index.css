@@ -1,11 +1,13 @@
 body{
-    background-color: #f3f4f6
+    background-color: #f3f4f6;
+    font-family: sans-serif;
+
 }
 
 .ContentBar{
     background-color: #FFFFFF;
     position: fixed;
-    width: 40vh;
+    width: 45vh;
     height: 100ch;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -18,7 +20,12 @@ body{
 
 .QuestionDisplay{
     position: Absolute;
-    left:41vh;
+    left:46vh;
+    margin-left: 50px;
+}
+
+.section_title{
+    margin: 50px 10px 50px 0px;
 }
 
 .Title{
@@ -97,4 +104,16 @@ body{
     margin-top: 10px;
     font-size: large;
     color: #777777;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.NavBTN:hover{
+    border: none;
+    background-color: #e8e8e8;
+    margin-top: 10px;
+    font-size: large;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
 }

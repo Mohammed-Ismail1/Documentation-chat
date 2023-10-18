@@ -1,151 +1,137 @@
-import react, {Component, useEffect, UseState} from 'react';
+import React, { Component, useEffect, useState, useCallback } from 'react';
 import './index.css';
-export default class Documentation_chat extends Component{
-    constructor(props){
-        
-        /*super() is necessary when defining a constructor in a subclass of 'Component'. 
-        It ensures that the Component class is properly initialized before adding any additional properties to the subclass*/
-        super(props);
 
-        //This.state is an array where you can change the value (State) of it's content through this.setSate({})
-        this.state = {
-            QuestionShow: 'architecture',
-        };
-    }
-    
+export default class DocumentationChat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      QuestionShow: 'scope',
+    };
+  }
 
-    
-    //render the app
-    render(){
-        const {QuestionShow} = this.state;
-        return(
-            <>
-            <div className='ContentBar'> {/*ContentBar for all the Headers of the documentation*/} 
-                <div className='Title'>Chat content</div> {/*Title of the bar*/}
-                    <div className='Content'>
-                        <ul><button className='NavBTN' >App scope</button></ul>
-                        <ul><button className='NavBTN' >System design & architecture</button></ul>
-                        <ul><button className='NavBTN' >General description</button></ul>
-                        <ul><button className='NavBTN' >features & requirements</button></ul>
-                    </div>
-            </div> {/*close the ContentBar div*/} 
+  render() {
+    const { QuestionShow } = this.state;
 
-            <div className='QuestionDisplay'>
-            </div>
+    return (
+      <>
+        <div className="ContentBar">
+          <div className="Title">Chat content</div>
+          <div className="Content">
+            <ul>
+              <button
+                className="NavBTN"
+                onClick={() => this.setState({ QuestionShow: 'scope' })}>
+                App scope
+              </button>
+            </ul>
+            <ul>
+              <button
+                className="NavBTN"
+                onClick={() => this.setState({ QuestionShow: 'architecture' })}>
+                System design & architecture
+              </button>
+            </ul>
+            <ul>
+              <button 
+              className="NavBTN"
+              onClick={() => this.setState({ QuestionShow: 'description' })}>
+                General description
+            </button>
+            </ul>
+            <ul>
+              <button 
+              className="NavBTN"
+              onClick={() => this.setState({ QuestionShow: 'features' })}>
+                features & requirements
+            </button>
+            </ul>
+          </div>
+        </div>
 
-            <form action="POST"> {/*use the <form> to be able to POST the user input*/}
-                <div className='InputContainer'> {/*add a container to hold the elements for the user input bar*/}
+        <div className="QuestionDisplay">
+          {Questions(QuestionShow)}
+        </div>
 
-                        <input type="text" className='InputBox' placeholder='Document the application'/> {/*use the <form> to be able to POST the user input*/}
-                        <input type="file" className="imageInput" id="imageInput" accept="image/*"/> {/*add a image upload button*/}
-                        <label for="imageInput" className="imageInput-label"></label> {/*add a label to the imageInput to make the button an image through css*/}
-                        <input type="Submit" className='SubmitBtn' value=''/> {/*add a submit button to submit the user input*/}
-
-                </div> {/*close the InputContainer div*/}
-            </form> {/*close the form*/}
-
-
-            </>
-        )
-    }
+        <form method="POST">
+          <div className="InputContainer">
+            <input type="text" className="InputBox" placeholder="Document the application" />
+            <input type="file" className="imageInput" id="imageInput" accept="image/*" />
+            <label htmlFor="imageInput" className="imageInput-label"></label>
+            <input type="submit" className="SubmitBtn" value="" />
+          </div>
+        </form>
+      </>
+    );
+  }
 }
 
+// This function will handle the answers and the Questions
+function Questions(QuestionShow) {
+  // Define the questions and their sections
+  const questions = {
+    scope: [
+        {title: "App scope"},
+        {id: 1, Question: "What is the name of the App?", answer: ''},
+        {id: 2, Question: "what are the goals of the App?", answer: ''},
+        {id: 3, Question: "what problems will the app solve?", answer: ''},
+        {id: 4, Question: "What will the app cover and what wont it cover?", answer: ''},
+      // Add more scope questions here
+    ],
+    architecture: [
+        {title: "System design & architecture"},
+        {id: 1, Question: "introduction to the architecture of the app", answer: ''},
+        {id: 2, Question: "network connectivity requirements?", answer: ''},
+        {id: 3, Question: "design Principles", answer: ''},
+        {id: 4, Question: "data model", answer: ''},
+        {id: 5, Question: "User interface Design", answer: ''},
+        {id: 6, Question: "System Components", answer: ''},
+        {id: 7, Question: "External interfaces", answer: ''},
+        {id: 8, Question: "Algorithms and Logic", answer: ''},
+        {id: 9, Question: "Data flow and processing", answer: ''},
+        {id: 10, Question: "Deployment and Configuration", answer: ''},
+        {id: 11, Question: "Dependencies and third-party libraries", answer: ''},
+        {id: 12, Question: "Appendices", answer: ''},
+      // Add more architecture questions here
+    ],
+    description: [
+        {title: "General description"},
+        {id: 1, Question: "Use cases", answer: ''},
+        {id: 2, Question: "Product limitations and constraints", answer: ''},
+        
+        // Add more architecture questions here
+    ],
+     features: [
+        {title: "features & requirements"},
+        { id: 1, Question: 'Introduction to the architecture of the app', answer: '' },
+        { id: 2, Question: 'Network connectivity requirements?', answer: '' },
+        { id: 3, Question: "External interface requirement", answer: ''},
+        { id: 4, Question: "Non-functional requirements", answer: ''}
+      // Add more architecture questions here
+    ],
+  };
 
-//this function will be handeling the answers and the Questions
-function Questions(Question_Show){
+  // Get the questions based on the selected show
+  const selectedQuestions = questions[QuestionShow];
 
-    //handle the scope questions
-    const scope = ()=>{
-        const scope_Questions = [
-            {id: 1, Question: "What is the name of the App?", answer: ''},
-            {id: 2, Question: "what are the goals of the App?", answer: ''},
-            {id: 3, Question: "what problems will the app solve?", answer: ''},
-            {id: 4, Question: "What will the app cover and what wont it cover?", answer: ''},
-        ]
-    
-        return (
-            <>
-                <div className='section_title'>App scope</div>
-                <div>
-                    {scope_Questions.map((Question) => <h1 key={Question.id}>{Question.Question} </h1>)}
+  if (selectedQuestions) {
+    return (
+      <>
+        <div>
+            {selectedQuestions.map((Question) => (
+                <h1 className="section_title">{Question.title}</h1>
+            ))}
+        </div>
+        <div>
+            {selectedQuestions.map((Question) => (
+                <div key={Question.id}>
+                    <h2>{Question.Question}</h2>
+                    <div>{Question.answer}</div>
                 </div>
-            </>
-          );
-    }
-
-    // handle the design and architectire questions
-    const design_Architecture = ()=>{
-        const archetecture_Questions = [
-            {id: 1, Question: "introduction to the architecture of the app", answer: ''},
-            {id: 2, Question: "network connectivity requirements?", answer: ''},
-            {id: 3, Question: "design Principles", answer: ''},
-            {id: 4, Question: "data model", answer: ''},
-            {id: 5, Question: "User interface Design", answer: ''},
-            {id: 6, Question: "System Components", answer: ''},
-            {id: 7, Question: "External interfaces", answer: ''},
-            {id: 8, Question: "Algorithms and Logic", answer: ''},
-            {id: 9, Question: "Data flow and processing", answer: ''},
-            {id: 10, Question: "Deployment and Configuration", answer: ''},
-            {id: 11, Question: "Dependencies and third-party libraries", answer: ''},
-            {id: 12, Question: "Appendices", answer: ''},
-
-
-        ]
-    
-        return (
-            <>
-                <div className='section_title'>system design & Architecture</div>
-                <div>
-                    {archetecture_Questions.map((Question) => <h1 key={Question.id}>{Question.Question} </h1>)}
-                </div>
-            </>
-          );
-    }
-
-    //handle the general description questions
-    const general_Description = ()=>{
-        const Description_Questions = [
-            {id: 1, Question: "Use cases", answer: ''},
-            {id: 2, Question: "Product limitations and constraints", answer: ''},
-
-        ]
-    
-        return (
-            <>
-                <div className='section_title'>General description</div>
-                <div>
-                    {Description_Questions.map((Question) => <h1 key={Question.id}>{Question.Question} </h1>)}
-                </div>
-            </>
-          );
-    }
-
-// handle the features and requirements questions
-    const features_Requirements = ()=>{
-        const features_Questions = [
-            {id: 1, Question: "Features", answer: ''},
-            {id: 2, Question: "Functional requirements", answer: ''},
-            {id: 3, Question: "External interface requirement", answer: ''},
-            {id: 4, Question: "Non-functional requirements", answer: ''},
-
-        ]
-    
-        return (
-            <>
-                <div className='section_title'>features & Requirements</div>
-                <div>
-                    {features_Questions.map((Question) => <h1 key={Question.id}>{Question.Question} </h1>)}
-                </div>
-            </>
-          );
-    }
-
-    if (Question_Show = 'scope') {
-        return features_Requirements();
-    } else if (Question_Show = 'architecture') {
-        return design_Architecture();
-    } else {
-        return null; // Return null for other cases
-    }
-}  
-
+            ))}
+        </div>
+      </>
+    );
+  } else {
+    return null; // Return null for other cases
+  }
+}
