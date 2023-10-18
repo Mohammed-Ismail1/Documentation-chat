@@ -91,34 +91,6 @@ body{
 
 }
 
-.container .ql-editor{
-    width: 8.5in;
-    height: 11in;
-    padding: 1in;
-    background-color: #FFFFFF;
-}
-
-.container .ql-container.ql-snow{
-    border: none;
-    display: flex;
-    justify-content: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
-
-}
-
-.container .ql-toolbar.ql-snow{
-    display: flex;
-    top: 0;
-    justify-content: center;
-    position: sticky;
-    z-index: 1;
-    margin-left: 1rem;
-    margin-right: 1rem;
-
-    background-color: #FFFFFF;
-}
-
 .NavBTN{
     border: none;
     background-color: white;
