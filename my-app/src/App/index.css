@@ -10,6 +10,7 @@ body{
     width: 45vh;
     height: 100ch;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
 
 }
 
@@ -24,8 +25,19 @@ body{
     margin-left: 50px;
 }
 
+.section_Question{
+    padding-top: 75px;
+
+}
+
+.header{
+    position: fixed;
+
+}
+
 .section_title{
     margin: 50px 10px 50px 0px;
+    position: relative;
 }
 
 .Title{
@@ -37,45 +49,7 @@ body{
     color: #777777;
 }
 
-.InputContainer{
-    position: fixed;
-    border-radius: 50px;
-    width: 100vh;
-    height: 60px;
-    bottom: 0;
-    left: 65vh;
-    margin-bottom: 25px;
-    background-color: #FFFFFF;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    z-index: 2;
-}
 
-.InputBox{
-    position: relative;
-    border-radius: 50px;
-    border: none;
-    width: 80vh;
-    height: 59px;
-    background-color: #FFFFFF;
-    margin-left: 30px;
-}
-
-.InputBox:focus {
-    outline: none;
-}
-
-.SubmitBtn{
-    background-image: url('./Assets/send.png'); /* Replace 'your-svg-image.svg' with the path to your SVG image */
-    background-size: contain; /* Adjust this property to control how the SVG image fits within the button */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    width: 30px; /* Adjust the width and height to fit your button size */
-    position: absolute;
-    height: 30px;
-    border: none; /* Remove the default button border */
-    cursor: pointer; /* Change the cursor to a pointer on hover for better user experience */
-    margin-top: 13px;
-    margin-left: 60px;
-}
 
 /* Style for the file input (hidden) */
 .imageInput{
@@ -117,3 +91,52 @@ body{
     padding: 10px;
     border-radius: 5px;
 }
+
+.Question{
+    padding: 0px 0px 300px 25px;
+}
+
+.Question:hover{
+    border: none;
+    background-color: #f3f4f6;
+    color: black;
+    padding-left: 35px;
+    border-radius: 5px;
+}
+
+
+.Question_Answer{
+    padding: 25px;
+}
+
+.Question_Answer:hover{
+    border: none;
+    background-color: #f3f4f6;
+    color: black;
+    padding-left: 35px;
+    border-radius: 5px;
+}
+
+.Question_Answer:hover .answer{
+    background-color: #f3f4f6;
+}
+
+.answer{
+    border: none;
+    background-color:#f3f4f6 ;
+    font-size: large;
+    margin: 0px 0px 25px 0px;
+    width: 90vh;
+    outline: none;
+    resize:none;
+    font-family: sans-serif;
+}
+
+.answer:focus {
+    outline: none;
+}
+
+.answer::-webkit-scrollbar{
+    width: 0px;
+}
+
