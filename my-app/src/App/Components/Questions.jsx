@@ -9,9 +9,9 @@ export function Questions(QuestionShow, QuestionId) {
     scope: [
         {title: "App scope"},
         {id: 1, Question: "What is the name of the App?", answer: 'fbsddsf'},
-        {id: 2, Question: "what are the goals of the App?", answer: ''},
-        {id: 3, Question: "what problems will the app solve?", answer: ''},
-        {id: 4, Question: "What will the app cover and what wont it cover?", answer: ''},
+        {id: 2, Question: "what are the goals of the App?", answer: 'zdggn'},
+        {id: 3, Question: "what problems will the app solve?", answer: 'dgzv'},
+        {id: 4, Question: "What will the app cover and what wont it cover?", answer: ' '},
         
       // Add more scope questions here
     ],
@@ -48,8 +48,7 @@ export function Questions(QuestionShow, QuestionId) {
     ],
   };
 
-  // Get the questions based on the selected show
-  const selectedQuestions = questions[QuestionShow];
+
   
   // Initialize state objects for answers
   const scopeInitialAnswers = {};
@@ -63,35 +62,28 @@ export function Questions(QuestionShow, QuestionId) {
   const [descrAnswers, setDescrAnswers] = useState(descrInitialAnswers);
   const [featuresAnswers, setFeaturesAnswers] = useState(featuresInitialAnswers);
 
-  var answer = archAnswers;
+    // Get the questions based on the selected show
+    const selectedQuestions = questions[QuestionShow];
+    //const Question_ID = findQuestionById(QuestionId);
 
-  // Iterate through the questions and populate the initial answers
-  for (const section in questions) {
-    for (const question of questions[section]) {
-      if (question.id && question.answer !== undefined) {
-        // Check if the question has an answer and a valid ID
-        if (section === 'scope') {
-          scopeInitialAnswers[question.id] = question.answer;
-          answer = scopeAnswers;
 
-        } else if (section === 'architecture') {
-          archInitialAnswers[question.id] = question.answer;
-          answer = archAnswers;
-
-        } else if (section === 'description') {
-          descrInitialAnswers[question.id] = question.answer;
-          answer = descrAnswers;
-
-        } else if (section === 'features') {
-          featuresInitialAnswers[question.id] = question.answer;
-          answer = featuresAnswers;
-
-        }
-      }
+  function getAnswers(Question) {
+    if (Question === 'scope') {
+      console.log(scopeAnswers)
     }
+    if (Question === 'architecture') {
+      return archAnswers;
+    }
+    if (Question === 'description') {
+      return descrAnswers;
+    }
+    if (Question === 'features') {
+      return featuresAnswers;
+    }
+
+    return {};
   }
-
-
+  
 
   const handleAnswerChange = (id, value) => {
     setScopeAnswers((prevAnswers) => ({
@@ -116,23 +108,26 @@ export function Questions(QuestionShow, QuestionId) {
   };
 
 
-  function findQuestionById(id) {
+  /*function findQuestionById(id) {
     for (const Question of selectedQuestions) {
       if (Question.id === id) {
         return Question;
       }
     }
     return 'All question answered';
-  }
+  }*/
 
-  const Question_ID = findQuestionById(QuestionId);
 
   if (selectedQuestions) {
     return (
       <>
           <div className='header_section'>
             <div className='header'>
-              <div className="section_title">{selectedQuestions[0].title}</div>
+              <div className="section_title">
+                {questions[QuestionShow][0].title}
+                <button className='markAsDone' >Mark as done</button>
+                <label htmlFor="markAsDone" title="use this button to mark the section as done" className="markAsDone-label"></label>
+              </div>
               <div className="toolbar">
                 <input type="file" className="imageInput" id="imageInput" accept="image/*" />
                 <label htmlFor="imageInput" className="imageInput-label"></label>
@@ -146,14 +141,15 @@ export function Questions(QuestionShow, QuestionId) {
             <div key={Question.id}>
             
               <div className='section_Question'>
-                {Question.answer && (
+               
                   <div className='Question_Answer'>
-                    <h2>{Question.Question}</h2>
+                    <h2>{Question.Question}</h2> 
+                    <button className='skip'>skip</button>
                     <textarea
-                      value={archAnswers[Question.id]}
+                      value={getAnswers(QuestionShow)[Question.id]}
                       className="answer"
                       onChange={(e) => handleAnswerChange(Question.id, e.target.value)}
-                      rows={Math.max(1, Math.ceil(archAnswers[Question.id].length / 50))}
+                      rows={Math.max(1, Math.ceil((getAnswers(QuestionShow)?.[Question.id] || '').length / 50))}
                       style={{ height: "auto" }}
                       onInput={(e) => {
                         e.target.style.height = 'auto';
@@ -163,13 +159,9 @@ export function Questions(QuestionShow, QuestionId) {
                     
                     />
                   </div>
-                )}
               </div>
             </div>
           ))}
-        </div>
-        <div className='Question'>
-          <h2>{Question_ID.Question}</h2>
         </div>
       </>
     );
