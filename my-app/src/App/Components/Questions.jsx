@@ -9,7 +9,7 @@ export function Questions(QuestionShow, QuestionId) {
     scope: [
         {title: "App scope"},
         {id: 1, Question: "What is the name of the App?", answer: 'fbsddsf'},
-        {id: 2, Question: "what are the goals of the App?", answer: 'adgfbadg'},
+        {id: 2, Question: "what are the goals of the App?", answer: ''},
         {id: 3, Question: "what problems will the app solve?", answer: ''},
         {id: 4, Question: "What will the app cover and what wont it cover?", answer: ''},
         
@@ -17,31 +17,31 @@ export function Questions(QuestionShow, QuestionId) {
     ],
     architecture: [
         {title: "System design & architecture"},
-        {id: 1, Question: "introduction to the architecture of the app", answer: ' sd dv '},
-        {id: 2, Question: "network connectivity requirements?", answer: ''},
-        {id: 3, Question: "design Principles", answer: ''},
-        {id: 4, Question: "data model", answer: ''},
-        {id: 5, Question: "User interface Design", answer: ''},
-        {id: 6, Question: "System Components", answer: ''},
-        {id: 7, Question: "External interfaces", answer: ''},
-        {id: 8, Question: "Algorithms and Logic", answer: ''},
-        {id: 9, Question: "Data flow and processing", answer: ''},
-        {id: 10, Question: "Deployment and Configuration", answer: ''},
-        {id: 11, Question: "Dependencies and third-party libraries", answer: ''},
-        {id: 12, Question: "Appendices", answer: ''},
+        {id: 1, Question: "introduction to the architecture of the app", answer: ' sddv '},
+        {id: 2, Question: "network connectivity requirements?", answer: 'g'},
+        {id: 3, Question: "design Principles", answer: 'gg'},
+        {id: 4, Question: "data model", answer: 'gg'},
+        {id: 5, Question: "User interface Design", answer: 'g'},
+        {id: 6, Question: "System Components", answer: 'gg'},
+        {id: 7, Question: "External interfaces", answer: 'gg'},
+        {id: 8, Question: "Algorithms and Logic", answer: 'g'},
+        {id: 9, Question: "Data flow and processing", answer: 'gg'},
+        {id: 10, Question: "Deployment and Configuration", answer: 'jgy'},
+        {id: 11, Question: "Dependencies and third-party libraries", answer: 'yuf'},
+        {id: 12, Question: "Appendices", answer: 'utftu'},
       // Add more architecture questions here
     ],
     description: [
         {title: "General description"},
-        {id: 1, Question: "Use cases", answer: 'hffsavfa'},
-        {id: 2, Question: "Product limitations and constraints", answer: 'msdgbsdgb'},
+        {id: 1, Question: "Use cases", answer: 'jgg'},
+        {id: 2, Question: "Product limitations and constraints", answer: ''},
         
         // Add more architecture questions here
     ],
      features: [
         {title: "features & requirements"},
         {id: 1, Question: "Features", answer: 'fbadgf'},
-        {id: 2, Question: "Functional requirements", answer: 'mfgh'},
+        {id: 2, Question: "Functional requirements", answer: ''},
         {id: 3, Question: "External interface requirement", answer: ''},
         {id: 4, Question: "Non-functional requirements", answer: ''},
       // Add more architecture questions here
@@ -63,7 +63,7 @@ export function Questions(QuestionShow, QuestionId) {
   const [descrAnswers, setDescrAnswers] = useState(descrInitialAnswers);
   const [featuresAnswers, setFeaturesAnswers] = useState(featuresInitialAnswers);
 
-  var answer = scopeAnswers;
+  var answer = archAnswers;
 
   // Iterate through the questions and populate the initial answers
   for (const section in questions) {
@@ -130,26 +130,30 @@ export function Questions(QuestionShow, QuestionId) {
   if (selectedQuestions) {
     return (
       <>
-        <div>
+          <div className='header_section'>
+            <div className='header'>
+              <div className="section_title">{selectedQuestions[0].title}</div>
+              <div className="toolbar">
+                <input type="file" className="imageInput" id="imageInput" accept="image/*" />
+                <label htmlFor="imageInput" className="imageInput-label"></label>
+                <button className='Download'>Download file</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
           {selectedQuestions.map((Question) => (
             <div key={Question.id}>
-              <div className='header'>
-                <h1 className="section_title">{Question.title}</h1>
-                <div className='toolbar'>
-                  {/*<input type="file" className="imageInput" id="imageInput" accept="image/*" />
-                  <label htmlFor="imageInput" className="imageInput-label"></label>*/}
-                </div>
-              </div>
-              
+            
               <div className='section_Question'>
                 {Question.answer && (
                   <div className='Question_Answer'>
                     <h2>{Question.Question}</h2>
                     <textarea
-                      value={answer[Question.id]}
+                      value={archAnswers[Question.id]}
                       className="answer"
                       onChange={(e) => handleAnswerChange(Question.id, e.target.value)}
-                      rows={Math.max(1, Math.ceil(descrAnswers[Question.id].length / 50))}
+                      rows={Math.max(1, Math.ceil(archAnswers[Question.id].length / 50))}
                       style={{ height: "auto" }}
                       onInput={(e) => {
                         e.target.style.height = 'auto';

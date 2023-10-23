@@ -1,6 +1,8 @@
 body{
-    background-color: #f3f4f6;
+    background-color: #f2f4f9;
     font-family: sans-serif;
+    color: #777777;
+
 
 }
 
@@ -9,7 +11,6 @@ body{
     position: fixed;
     width: 45vh;
     height: 100ch;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
 
 }
@@ -17,27 +18,75 @@ body{
 .Content{
     display: inline-block;
     position: relative;
+
 }
 
 .QuestionDisplay{
     position: Absolute;
-    left:46vh;
+    width: 8.3in;
+    left:25%;
     margin-left: 50px;
+    background-color: #FFFFFF;
 }
 
 .section_Question{
     padding-top: 75px;
-
 }
+
+.header_section{
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    left: 45vh;
+    background-color: #FFFFFF;
+    color: #777777;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 
 .header{
-    position: fixed;
+    width: 70rem;
+    height: 3.5rem;
+    background-color: #f2f4f9;
+    border-radius: 25px;
+    position: absolute;
+    margin-top: 25px;
+    display: inline-block;
+}
+
+
+.section_title{
+    margin: 8px 0px 50px 50px;
+    position: absolute;
+    top: 0%;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+
+.toolbar {
+    position: absolute;
+    right: 10px; /* Adjust the right value as needed to control the distance from the right edge */
+    top: 0; /* You can adjust the top value to control the vertical position */
+}
+
+
+.Download{
+    border: none;
+    background-color: rgb(114, 171, 255);
+    border-radius: 50px;
+    font-size: small;
+    font-weight: bold;
+    padding: 10px;
+    margin-right: 25px;
+    cursor: pointer;
+    color: #FFFFFF;
+    margin: 8px 25px 0px 0px;
 
 }
 
-.section_title{
-    margin: 50px 10px 50px 0px;
-    position: relative;
+.Download:hover{
+    transform: scale(1.05);
 }
 
 .Title{
@@ -56,20 +105,16 @@ body{
     display: none; /* Hide the default file input */
     }
 
-    /* Style for the custom button label */
-    .imageInput-label {
+/* Style for the custom button label */
+.imageInput-label {
     background-image: url('./Assets/image.png'); /* Replace with your image URL */
     background-size: cover;
     background-repeat: no-repeat;
     width: 35px; 
-    position: absolute;
     height: 35px;
     cursor: pointer;
     display: inline-block;
-    text-indent: -9999px; /* Hide the text content of the label */
-    margin-top: 9px;
-    margin-left: 10px;
-
+    margin: 8px 25px 0px 0px;
 }
 
 .NavBTN{
@@ -80,6 +125,8 @@ body{
     color: #777777;
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
+
 }
 
 .NavBTN:hover{
@@ -98,7 +145,7 @@ body{
 
 .Question:hover{
     border: none;
-    background-color: #f3f4f6;
+    background-color: #FFFFFF;
     color: black;
     padding-left: 35px;
     border-radius: 5px;
@@ -111,19 +158,19 @@ body{
 
 .Question_Answer:hover{
     border: none;
-    background-color: #f3f4f6;
+    background-color: #FFFFFF;
     color: black;
     padding-left: 35px;
     border-radius: 5px;
 }
 
 .Question_Answer:hover .answer{
-    background-color: #f3f4f6;
+    background-color: #FFFFFF;
 }
 
 .answer{
     border: none;
-    background-color:#f3f4f6 ;
+    background-color: #FFFFFF;
     font-size: large;
     margin: 0px 0px 25px 0px;
     width: 90vh;

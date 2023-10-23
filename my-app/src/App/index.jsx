@@ -4,7 +4,7 @@ import { Questions } from './Components/Questions';
 
 function DocumentationChat() {
   const [QuestionShow, setQuestionShow] = useState('scope');
-  const [QuestionId, setQuestionId] = useState(1);
+const [QuestionId, /*setQuestionId*/] = useState(1);
 
     return (
       <>
@@ -46,11 +46,6 @@ function DocumentationChat() {
           {Questions(QuestionShow, QuestionId)}
         </div>
 
-        <form method="POST">
-          <div className="InputContainer">
-
-          </div>
-        </form>
       </>
     );
   }
