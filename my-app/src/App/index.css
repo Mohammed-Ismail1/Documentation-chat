@@ -31,7 +31,11 @@ body{
 }
 
 .section_Question{
-    padding-top: 25px;
+    padding-top: 10px;
+}
+
+.page{
+    padding-top: 150px;
 }
 
 .header_section{
@@ -45,21 +49,31 @@ body{
 }
 
 .Question_Answer .skip {
-    display: none; /* Hide the button by default */
-  }
-  
-  .Question_Answer:hover .skip {
-    display: inline-block; /* Display the button when hovering over the Question_Answer */
     border: none;
-    background-color: rgb(114, 171, 255);
-    border-radius: 50px;
+    background-color: rgba(118, 118, 118, 0.055);
+    border-radius: 10px;
     font-size: small;
     font-weight: bold;
     padding: 10px;
     margin-right: 15px;
     cursor: pointer;
     color: #FFFFFF;
+    margin-left: 25px;
+    margin-bottom: 10px;
   }
+  
+  .Question_Answer:hover .skip {
+    border: none;
+    background-color: rgb(114, 171, 255);
+    border-radius: 10px;
+    font-size: small;
+    font-weight: bold;
+    padding: 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    color: #FFFFFF;
+    margin-left: 25px;
+    margin-bottom: 10px;  }
 
 
 .header{
@@ -99,7 +113,7 @@ body{
     margin-right: 25px;
     cursor: pointer;
     color: #FFFFFF;
-    margin: 8px 25px 0px 0px;
+    margin: 0px 25px 8px 0px;
 
 }
 
@@ -146,9 +160,10 @@ body{
     background-repeat: no-repeat;
     width: 35px; 
     height: 35px;
+    padding: 0px;
     cursor: pointer;
     display: inline-block;
-    margin: 8px 25px 0px 0px;
+    margin: 8px 100px 0px 0px;
 }
 
 .NavBTN{
@@ -165,7 +180,7 @@ body{
 
 .NavBTN:hover{
     border: none;
-    background-color: #e8e8e8;
+    background-color: #f2f4f9;
     margin-top: 10px;
     font-size: large;
     color: black;
@@ -174,10 +189,19 @@ body{
 }
 
 
+.NavBTN.active {
+    /* Add styles for the active button */
+    background-color: #f2f4f9;
+    color: #000000; /* Change to your desired active text color */
+    /* other styles for the active button */
+  }
 
+  
 
 .Question_Answer{
     padding: 25px;
+    width: 7in;
+    padding-right: 50px;
     
 }
 
@@ -191,6 +215,8 @@ body{
 
 .Question_Answer:hover .answer{
     background-color: #FFFFFF;
+    color: #000000;
+
 }
 
 .answer{
@@ -198,10 +224,11 @@ body{
     background-color: #FFFFFF;
     font-size: large;
     margin: 0px 0px 25px 0px;
-    width: 90vh;
+    width: 100vh;
     outline: none;
     resize:none;
     font-family: sans-serif;
+    color: #777777;
 }
 
 .answer:focus {
@@ -212,3 +239,7 @@ body{
     width: 0px;
 }
 
+.Question{
+    font-size: x-large;
+    font-weight: bold;
+}

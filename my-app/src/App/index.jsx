@@ -13,29 +13,29 @@ const [QuestionId, /*setQuestionId*/] = useState(1);
           <div className="Content">
             <ul>
               <button
-                className="NavBTN"
+                className={`NavBTN ${QuestionShow === 'scope' ? 'active' : ''}`}
                 onClick={() => setQuestionShow('scope' )}>
                 App scope
               </button>
             </ul>
             <ul>
               <button
-                className="NavBTN"
+                className={`NavBTN ${QuestionShow === 'architecture' ? 'active' : ''}`}
                 onClick={() => setQuestionShow('architecture' )}>
                 System design & architecture
               </button>
             </ul>
             <ul>
               <button 
-              className="NavBTN"
-              onClick={() => setQuestionShow('description' )}>
+                className={`NavBTN ${QuestionShow === 'description' ? 'active' : ''}`}
+                onClick={() => setQuestionShow('description' )}>
               General description
             </button>
             </ul>
             <ul>
               <button 
-              className="NavBTN"
-              onClick={() => setQuestionShow('features' )}>
+                className={`NavBTN ${QuestionShow === 'features' ? 'active' : ''}`}
+                onClick={() => setQuestionShow('features' )}>
               features & requirements
             </button>
             </ul>
