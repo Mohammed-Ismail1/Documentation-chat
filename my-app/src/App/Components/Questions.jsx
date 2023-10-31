@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-//import ExportJSON from './ExportJSON'; // Import the ExportJSON component
-
+import ExportJSON from './ExportJson';
 
 // This function will handle the answers and the Questions
 export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setSkipped) {
-
 
   // Define the questions and their sections, useMemo() ensures that the object is not re-computed on every render
   const questions = useMemo(() => {
@@ -137,7 +135,7 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
   const markAsDone = () => {
     const currentSectionQuestions = questions[QuestionShow].slice(2); // Get the questions in the current section
     const answeredAnNotdSkipped = currentSectionQuestions.filter(
-      question => question.answer !== '' && question.skip === false
+      question => question.answer !== '' || question.skip === true
     );
     
     const AllQuestionsSkipped = currentSectionQuestions.every(
@@ -239,6 +237,7 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
                   </button>
               </div>
               <div className="toolbar">
+              <ExportJSON data={questions} QuestionShow={QuestionShow} />
                 {/*<input type="file" className="imageInput" id="imageInput" accept="image/*" />
                 <label htmlFor="imageInput" className="imageInput-label"></label>*/}
                 <button className='Download'>Download file</button>
@@ -254,9 +253,27 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
                   <div className={`QuestionBox ${Question.skip ? 'skipped-question' : ''}`}>
                     {Question.Question}
                     {Question.skip ?
-                      <button className={`unskip ${done[QuestionShow] ? 'skipDisabled' : ''}`} onClick={() => unskipQ(QuestionShow, Question.id)} disabled={done[QuestionShow]}>unskip</button>
+                      <button
+                        className={`unskip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
+                        onClick={() => {
+                          unskipQ(QuestionShow, Question.id);
+                          ExportJSON({ data: questions, QuestionShow });
+                        }}
+                        disabled={done[QuestionShow]}
+                      >
+                        unskip
+                      </button>
                       :
-                      <button className={`skip ${done[QuestionShow] ? 'skipDisabled' : ''}`} onClick={() => skipQ(QuestionShow, Question.id)} disabled={done[QuestionShow]} >skip</button>
+                      <button
+                        className={`skip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
+                        onClick={() => {
+                          skipQ(QuestionShow, Question.id);
+                          ExportJSON({ data: questions, QuestionShow });
+                        }}
+                        disabled={done[QuestionShow]}
+                      >
+                        skip
+                      </button>
                     }
                   </div>
                   {Question.skip ?
@@ -286,7 +303,9 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
             </div>
           ))}
         </div>
+        
       </>
+      
     );
   } else {
     return null;

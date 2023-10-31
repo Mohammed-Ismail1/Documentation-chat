@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ExportJSON({ data }) {
+function ExportJSON({ data, QuestionShow}) {
   const exportToJson = () => {
     // Convert the questions and answers to a JSON array
     const jsonData = data[QuestionShow].slice(2).map((question) => ({
@@ -27,11 +27,6 @@ function ExportJSON({ data }) {
       });
   };
 
-  return (
-    <button onClick={exportToJson}>
-      Export JSON
-    </button>
-  );
 }
 
 export default ExportJSON;
