@@ -1,13 +1,13 @@
 body{
     background-color: #f2f4f9;
     font-family: sans-serif;
-    color: #777777;
+    color: black;
 
 
 }
 
 .ContentBar{
-    background-color: #FFFFFF;
+    background-color: #024854;
     position: fixed;
     width: 45vh;
     height: 100ch;
@@ -45,8 +45,8 @@ body{
     width: 100%;
     height: 100px;
     left: 45vh;
-    background-color: #FFFFFF;
-    color: #777777;
+    background-color: #024854;
+    color: rgb(242, 108, 81);
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -150,7 +150,7 @@ body{
 
 .Download{
     border: none;
-    background-color: rgb(114, 171, 255);
+    background-color: rgb(242, 108, 81);
     border-radius: 50px;
     font-size: small;
     font-weight: bold;
@@ -172,14 +172,14 @@ body{
     font-size: xx-large;
     margin-left: 45px;
     margin-top: 30px;
-    color: #777777;
+    color: rgb(242, 108, 81);
 }
 
 .markAsDone{
     border: none;
     background-color: #f2f4f9;
     font-size: xx-large;
-    color: #777777;
+    color: rgb(242, 108, 81);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -205,10 +205,10 @@ body{
 
 .NavBTN{
     border: none;
-    background-color: white;
+    background-color: #024854;
     margin-top: 10px;
     font-size: large;
-    color: #777777;
+    color: #FFFFFF;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -217,10 +217,10 @@ body{
 
 .NavBTN:hover{
     border: none;
-    background-color: #f2f4f9;
+    background-color: rgb(242, 108, 81);
     margin-top: 10px;
     font-size: large;
-    color: black;
+    color: white;
     padding: 10px;
     border-radius: 5px;
 }
@@ -228,8 +228,8 @@ body{
 
 .NavBTN.active {
     /* Add styles for the active button */
-    background-color: #f2f4f9;
-    color: #000000; /* Change to your desired active text color */
+    background-color: rgb(242, 108, 81);
+    color: white; /* Change to your desired active text color */
     /* other styles for the active button */
   }
 
@@ -265,7 +265,7 @@ body{
     outline: none;
     resize:none;
     font-family: sans-serif;
-    color: #777777;
+    color: black;
 }
 
 .answer:focus {
@@ -288,19 +288,19 @@ body{
   }
 
 .sectionDone{
-    color: #95ff7d;
+    color: rgb(242, 108, 81);
 }
 
 .sectionDone:hover{
-    outline: 2px solid #2fff006d;
-    background-color: #FFFFFF;
-    color: #2fff006d;
+    outline: 2px solid rgb(242, 108, 81);
+    background-color: rgb(242, 108, 81);
+    color: white;
 }
   
 .sectionDone.active{
-    outline: 2px solid #2fff00;
-    background-color: #FFFFFF;
-    color: #2fff00;
+    outline: 2px solid rgb(242, 108, 81);
+    background-color: rgb(242, 108, 81);
+    color: white;
 }
 
 .sectionSkipped{
