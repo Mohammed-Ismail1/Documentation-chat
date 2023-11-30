@@ -25,6 +25,7 @@ export function ExportJSON({ data, QuestionShow}) {
 }
 
 export const importFromJson =  async () => {
+  //set the file url to the path of your import.php file
   const phpFileUrl = 'http://172.18.33.164/documentation-chat/import_export.php';
 
   try {
