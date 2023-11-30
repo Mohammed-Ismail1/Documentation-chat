@@ -1,7 +1,4 @@
-import React from 'react';
-
-function ExportJSON({ data, QuestionShow}) {
-  const exportToJson = () => {
+export function ExportJSON({ data, QuestionShow}) {
     // Convert the questions and answers to a JSON array
     const jsonData = data[QuestionShow].slice(2).map((question) => ({
       id: question.id,
@@ -25,8 +22,21 @@ function ExportJSON({ data, QuestionShow}) {
       .catch((error) => {
         console.error(error);
       });
-  };
-
 }
 
-export default ExportJSON;
+export const importFromJson =  async () => {
+  const phpFileUrl = 'http://172.18.33.164/documentation-chat/import_export.php';
+
+  try {
+    const response = await fetch(phpFileUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const jsonData = await response.json();
+
+    return jsonData;
+  } catch (error) {
+    console.error('Fetch error:', error);
+  }
+}

@@ -1,75 +1,8 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import ExportJSON from './ExportJson';
+import React, { useState, useEffect, useRef } from 'react';
+import {Getquestions}  from '../index'
 
 // This function will handle the answers and the Questions
-export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setSkipped) {
-
-  // Define the questions and their sections, useMemo() ensures that the object is not re-computed on every render
-  const questions = useMemo(() => {
-    return {    
-        scope: [
-          {title: "App scope"},
-          {done: false},
-          {id: 1, Question: "What is the name of the App?", answer: '', hint: "WHat is the name of your application? name your app", skip: false},
-          {id: 2, Question: "what are the goals of the App?", answer: '', hint: "what is the purpose of your app, what are you trying to achieve with it?", skip: false},
-          {id: 3, Question: "what problems will the app solve?", answer: '', hint: "what are the problems the app will solve for the user", skip: false},
-          {id: 4, Question: "What will the app cover and what wont it cover?", answer: '', hint: "name the things your app will do and what it wont do", skip: false},
-          
-      ],
-      architecture: [
-          {title: "System design & architecture"},
-          {done: false},
-          {id: 5, Question: "introduction to the architecture of the app", answer: '', hint: "what is the layout of the app's architecture, what will the architecture look like?", skip: false},
-          {id: 6, Question: "network connectivity requirements?", answer: '', hint: "", skip: false},
-          {id: 7, Question: "design Principles", answer: '', hint: "", skip: false},
-          {id: 8, Question: "data model", answer: '', hint: "", skip: false},
-          {id: 9, Question: "User interface Design", answer: '', hint: "", skip: false},
-          {id: 10, Question: "System Components", answer: '', hint: "", skip: false},
-          {id: 11, Question: "External interfaces", answer: '', hint: "", skip: false},
-          {id: 12, Question: "Algorithms and Logic", answer: '', hint: "", skip: false},
-          {id: 13, Question: "Data flow and processing", answer: '', hint: "", skip: false},
-          {id: 14, Question: "Deployment and Configuration", answer: '', hint: "", skip: false},
-          {id: 15, Question: "Dependencies and third-party libraries", answer: '', hint: "", skip: false},
-          {id: 16, Question: "Appendices", answer: '', hint: "", skip: false},
-      ],
-      description: [
-          {title: "General description"},
-          {done: false},
-          {id: 17, Question: "Use cases", answer: '', hint: "", skip: false},
-          {id: 18, Question: "Product limitations and constraints", answer: '', hint: "", skip: false},
-          
-      ],
-      features: [
-          {title: "features & requirements"},
-          {done: false},
-          {id: 19, Question: "Features", answer: '', hint: "", skip: false},
-          {id: 20, Question: "Functional requirements", answer: '', hint: "", skip: false},
-          {id: 21, Question: "External interface requirement", answer: '', hint: "", skip: false},
-          {id: 22, Question: "Non-functional requirements", answer: '', hint: "", skip: false},
-      ],
-    };
-  }, []); // Provide an empty dependency array to ensure it's only created once
-
-  /*
-  const questions = useMemo(() => {
-    const scope = () =>{
-
-    }
-
-    const architecture = () =>{
-      
-    }
-
-    const description = () =>{
-      
-    }
-
-    const features = () =>{
-      
-    }
-  }, []); // Provide an empty dependency array to ensure it's only created once
-  */
-
+export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
 
   const [answers, setAnswers] = useState({
     scope: {},
@@ -80,9 +13,9 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
 
   const [/*skip*/, setskip] = useState(false)
 
-  const [finished, setFinished] = useState(false)
+ // const [finished, setFinished] = useState(false)
 
-  const selectedQuestions = questions[QuestionShow].filter((question) => question.id);
+  const selectedQuestions = Getquestions[QuestionShow] ? Getquestions[QuestionShow].filter((question) => question.id) : [];
   const isMounted = useRef(false);// useRef() is used to prevent a re-render when a mutable value is stored or changed
 
 
@@ -93,8 +26,8 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
       // Iterate through all sections and collect answers
-      ...Object.keys(questions).reduce((acc, section) => {
-        acc[section] = questions[section].reduce((sectionAnswers, question) => {
+      ...Object.keys(Getquestions).reduce((acc, section) => {
+        acc[section] = Getquestions[section].reduce((sectionAnswers, question) => {
           sectionAnswers[question.id] = question.answer;
           return sectionAnswers;
         }, {});
@@ -103,11 +36,11 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
     }));
     
     isMounted.current = true;
-  }, [questions]);
+  }, []);
 
   const handleAnswerChange = (section, id, value) => {
 
-    const updatedQuestions = { ...questions };
+    const updatedQuestions = { ...Getquestions };
 
     const sectionQuestions = updatedQuestions[section];
     const questionIndex = sectionQuestions.findIndex(question => question.id === id);
@@ -133,7 +66,7 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
 
 
   const markAsDone = () => {
-    const currentSectionQuestions = questions[QuestionShow].slice(2); // Get the questions in the current section
+    const currentSectionQuestions = Getquestions[QuestionShow].slice(2); // Get the questions in the current section
     const answeredAnNotdSkipped = currentSectionQuestions.filter(
       question => question.answer !== '' || question.skip === true
     );
@@ -186,7 +119,7 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
 
   const skipQ = (section, id) => {
     // Clone the questions object to avoid modifying the state directly
-    const updatedQuestions = { ...questions };
+    const updatedQuestions = { ...Getquestions };
   
     // Find the question within the section by ID
     const sectionQuestions = updatedQuestions[section];
@@ -206,7 +139,7 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
 
   const unskipQ = (section, id) => {
     // Clone the questions object to avoid modifying the state directly
-    const updatedQuestions = { ...questions };
+    const updatedQuestions = { ...Getquestions };
   
     // Find the question within the section by ID
     const sectionQuestions = updatedQuestions[section];
@@ -231,13 +164,12 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
           <div className='header_section'>
             <div className='header'>
               <div className="section_title">
-                {questions[QuestionShow][0].title}
-                  <button className={`markAsDone ${questions[QuestionShow][1].done ? 'sectionDone' : ''}`} onClick={() => markAsDone()}>
-                    ✔
+                {Getquestions[QuestionShow] ? Getquestions[QuestionShow][0].title : 'No Title'}
+                  <button className={`markAsDone ${Getquestions[QuestionShow] ? Getquestions[QuestionShow][1].done ? 'sectionDone' : '' : ''}`} onClick={() => markAsDone()}>
+                  ✔
                   </button>
               </div>
               <div className="toolbar">
-              <ExportJSON data={questions} QuestionShow={QuestionShow} />
                 {/*<input type="file" className="imageInput" id="imageInput" accept="image/*" />
                 <label htmlFor="imageInput" className="imageInput-label"></label>*/}
                 <button className='Download'>Download file</button>
@@ -245,7 +177,7 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
             </div>
           </div>
 
-        <div className={`page ${questions[QuestionShow][1].done ? 'done' : ''}`}>
+        <div className={`page ${Getquestions[QuestionShow] ? Getquestions[QuestionShow][1].done ? 'done' : '' : ''}`}>
           {selectedQuestions.map((Question) => (
             <div key={Question.id}>
               <div className='section_Question'>
@@ -257,7 +189,6 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
                         className={`unskip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           unskipQ(QuestionShow, Question.id);
-                          ExportJSON({ data: questions, QuestionShow });
                         }}
                         disabled={done[QuestionShow]}
                       >
@@ -268,7 +199,6 @@ export function Questions(QuestionShow, QuestionId, done, setDone, skipped, setS
                         className={`skip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           skipQ(QuestionShow, Question.id);
-                          ExportJSON({ data: questions, QuestionShow });
                         }}
                         disabled={done[QuestionShow]}
                       >
