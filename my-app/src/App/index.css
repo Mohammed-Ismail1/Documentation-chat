@@ -36,10 +36,6 @@ body{
     z-index: -10;
 }
 
-.done{
-    outline: 5px solid rgb(0, 255, 0);
-}
-
 .header_section{
     position: fixed;
     width: 100%;
@@ -292,8 +288,6 @@ body{
 }
 
 .sectionDone:hover{
-    outline: 2px solid rgb(242, 108, 81);
-    background-color: rgb(242, 108, 81);
     color: white;
 }
   

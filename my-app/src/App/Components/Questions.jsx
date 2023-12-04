@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Getquestions}  from '../index'
+import { ExportJSON } from './ExportJson';
 
 // This function will handle the answers and the Questions
 export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
@@ -11,16 +12,18 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
     features: {},
   });
 
-  const [/*skip*/, setskip] = useState(false)
+  const [skip, setskip] = useState(false)
 
  // const [finished, setFinished] = useState(false)
 
   const selectedQuestions = Getquestions[QuestionShow] ? Getquestions[QuestionShow].filter((question) => question.id) : [];
   const isMounted = useRef(false);// useRef() is used to prevent a re-render when a mutable value is stored or changed
+  const exportData = ExportJSON(answers, skipped, done, selectedQuestions)
 
-
+  console.log(exportData)
   useEffect(() => {
     // Set initial state based on QuestionShow only when the component mounts
+
     if (isMounted.current) return;
 
     setAnswers((prevAnswers) => ({
@@ -34,7 +37,7 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
         return acc;
       }, {}),
     }));
-    
+
     isMounted.current = true;
   }, []);
 
@@ -155,7 +158,6 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
       setskip(updatedQuestions);
     }
   };
-  
 
 
   if (selectedQuestions) {
@@ -186,21 +188,21 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
                     {Question.Question}
                     {Question.skip ?
                       <button
-                        className={`unskip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
+                        className={`unskip ${done[QuestionShow] || Getquestions[QuestionShow][1].done ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           unskipQ(QuestionShow, Question.id);
                         }}
-                        disabled={done[QuestionShow]}
+                        disabled={done[QuestionShow] || Getquestions[QuestionShow][1].done}
                       >
                         unskip
                       </button>
                       :
                       <button
-                        className={`skip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
+                        className={`skip ${done[QuestionShow] || Getquestions[QuestionShow][1].done ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           skipQ(QuestionShow, Question.id);
                         }}
-                        disabled={done[QuestionShow]}
+                        disabled={done[QuestionShow] || Getquestions[QuestionShow][1].done}
                       >
                         skip
                       </button>
@@ -223,7 +225,7 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
                         textarea.style.height = `${textarea.scrollHeight}px`;
                         textarea.style.lineHeight = "1.5"; // Adjust this value as needed
                       }}
-                      disabled={done[QuestionShow]}
+                      disabled={done[QuestionShow] || Getquestions[QuestionShow][1].done}
                     />                    
                   }
 

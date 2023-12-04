@@ -7,25 +7,23 @@ export const Getquestions = await importFromJson()
 
 // Note: Removed the export statement for `questions`
 
-
 function DocumentationChat() {
   const [QuestionShow, setQuestionShow] = useState('scope');
-  const question = Getquestions; // Initialize with null
+  const question = Getquestions; 
   
   const [done, setDone] = useState({
-    "scope": false,
-    "architecture": false,
-    "description": false,
-    "features": false,
+    scope: false,
+    architecture: false,
+    description: false,
+    features: false,
   });
 
   const [skipped, setSkipped] = useState({
-    "scope": false,
-    "architecture": false,
-    "description": false,
-    "features": false,
+    scope: false,
+    architecture: false,
+    description: false,
+    features: false,
   });
-
 
   const renderButtons = () => {
     if (!question) {
@@ -37,7 +35,7 @@ function DocumentationChat() {
         <button
           className={`NavBTN ${QuestionShow === section ? 'active' : ''} ${done[section] === true ? 'sectionDone' : ''}`}
           onClick={() => setQuestionShow(section)}>
-          {`${done[section] === true ? (` ${question && question[section][0].title} ✔`) : ( question && question[section][0].title) }`}
+          {`${done[section] === true  || question[section][1].done? (` ${question && question[section][0].title} ✔`) : ( question && question[section][0].title) }`}
         </button>
       </ul>
     ));
