@@ -180,6 +180,9 @@ body{
     cursor: pointer;
 }
 
+.markAsDone:hover{
+    color: rgb(188, 80, 58);
+}
 
 /* Style for the file input (hidden) */
 .imageInput{
@@ -282,14 +285,6 @@ body{
     text-decoration: line-through; /* Add this line to add a line through the text */
     /* Add any other styling you want for skipped questions */
   }
-
-.sectionDone{
-    color: rgb(242, 108, 81);
-}
-
-.sectionDone:hover{
-    color: white;
-}
   
 .sectionDone.active{
     outline: 2px solid rgb(242, 108, 81);

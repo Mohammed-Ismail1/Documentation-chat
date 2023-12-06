@@ -12,13 +12,43 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
     features: {},
   });
 
-  const [skip, setskip] = useState(false)
+  const [/*skip*/, setskip] = useState({
+    scope: {},
+    architecture: {},
+    description: {},
+    features: {},
+  })
 
  // const [finished, setFinished] = useState(false)
 
+  // Function to filter object based on keys
+  function filterObject(obj, keysToKeep) {
+    const filteredObj = {};
+    keysToKeep.forEach(key => {
+      if (obj.hasOwnProperty(key)) {
+        filteredObj[key] = obj[key];
+      }
+    });
+    
+    return filteredObj;
+  }
+
+  // Define the keys to keep
+  const keysToKeep = ['answer', 'skip', 'done'];
+
+  // Filter each section of the data object
+  const filteredData = Object.fromEntries(
+    Object.entries(Getquestions).map(([section, questions]) => [
+      section,
+      questions.map(question => filterObject(question, keysToKeep)),
+    ])
+  );
+
+  console.log(filteredData);
+
   const selectedQuestions = Getquestions[QuestionShow] ? Getquestions[QuestionShow].filter((question) => question.id) : [];
   const isMounted = useRef(false);// useRef() is used to prevent a re-render when a mutable value is stored or changed
-  const exportData = ExportJSON(answers, skipped, done, selectedQuestions)
+  const exportData = ExportJSON(filteredData)
 
   console.log(exportData)
   useEffect(() => {
@@ -70,6 +100,7 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
 
   const markAsDone = () => {
     const currentSectionQuestions = Getquestions[QuestionShow].slice(2); // Get the questions in the current section
+    const GetDone = Getquestions[QuestionShow][1].done 
     const answeredAnNotdSkipped = currentSectionQuestions.filter(
       question => question.answer !== '' || question.skip === true
     );
@@ -81,13 +112,13 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
     const areAllQuestionsAnswered = answeredAnNotdSkipped.length === currentSectionQuestions.length;
   
     if (areAllQuestionsAnswered) {
-      if(done[QuestionShow] === false){
+      if(done[QuestionShow] || GetDone === false){
         setDone(prevDone => ({
           ...prevDone,
           [QuestionShow]: true,
         }));
       }
-      if(done[QuestionShow] === true){
+      if(done[QuestionShow] || GetDone === true){
         setDone(prevDone => ({
           ...prevDone,
           [QuestionShow]: false,
@@ -135,7 +166,14 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
         skip: true,
       };
       // Update the state with the new questions object
-      setskip(updatedQuestions);
+      setskip((prevAnswers) => ({
+        ...prevAnswers,
+        [section]: {
+          ...prevAnswers[section],
+          [id]: updatedQuestions,
+          answer: updatedQuestions,
+        },
+      }));
 
     }
   };
@@ -155,7 +193,14 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
         skip: false,
       };
       // Update the state with the new questions object
-      setskip(updatedQuestions);
+      setskip((prevAnswers) => ({
+        ...prevAnswers,
+        [section]: {
+          ...prevAnswers[section],
+          [id]: updatedQuestions,
+          answer: updatedQuestions,
+        },
+      }));
     }
   };
 
@@ -167,7 +212,7 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
             <div className='header'>
               <div className="section_title">
                 {Getquestions[QuestionShow] ? Getquestions[QuestionShow][0].title : 'No Title'}
-                  <button className={`markAsDone ${Getquestions[QuestionShow] ? Getquestions[QuestionShow][1].done ? 'sectionDone' : '' : ''}`} onClick={() => markAsDone()}>
+                  <button className={`markAsDone`} onClick={() => markAsDone()}>
                   ✔
                   </button>
               </div>
@@ -184,11 +229,11 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
             <div key={Question.id}>
               <div className='section_Question'>
                 <div className='Question_Answer'>
-                  <div className={`QuestionBox ${Question.skip ? 'skipped-question' : ''}`}>
+                  <div className={`QuestionBox ${Question.skip? 'skipped-question' : ''}`}>
                     {Question.Question}
                     {Question.skip ?
                       <button
-                        className={`unskip ${done[QuestionShow] || Getquestions[QuestionShow][1].done ? 'skipDisabled' : ''}`}
+                        className={`unskip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           unskipQ(QuestionShow, Question.id);
                         }}
