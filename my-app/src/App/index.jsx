@@ -8,21 +8,17 @@ export const Getquestions = await importFromJson()
 // Note: Removed the export statement for `questions`
 
 function DocumentationChat() {
-  const [QuestionShow, setQuestionShow] = useState('scope');
+  const [QuestionShow, setQuestionShow] = useState(1);
   const question = Getquestions; 
   
   const [done, setDone] = useState({
-    scope: false,
-    architecture: false,
-    description: false,
-    features: false,
+    1: false,
+    2: false,
   });
 
   const [skipped, setSkipped] = useState({
-    scope: false,
-    architecture: false,
-    description: false,
-    features: false,
+    1: false,
+    2: false,
   });
 
   const renderButtons = () => {
