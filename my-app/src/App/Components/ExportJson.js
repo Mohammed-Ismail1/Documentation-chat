@@ -1,9 +1,9 @@
-export const ExportJSON = async (answers, skip, done, Getquestions) => {
+export const ExportJSON = async (answers, skip, done , Getquestions) => {
   // Ensure that Getquestions is an array before using map
   const questionsArray = Array.isArray(Getquestions) ? Getquestions : [];
-
+  
   // Convert the questions and answers to a JSON array
-  const jsonData = { answers, skip, done }
+  const jsonData = {answers, skip, done}
   console.log("JSON Data: ", JSON.stringify(jsonData));
 
   try {
@@ -35,9 +35,9 @@ export const ExportJSON = async (answers, skip, done, Getquestions) => {
 
 
 
-export const importFromJson = async () => {
+export const importFromJson =  async () => {
   //set the file url to the path of your import.php file
-  const phpFileUrl = 'http://192.168.178.214/Year_3/Database_JSON_Function/Database JSON Function/includes/json.php';
+  const phpFileUrl = 'http://172.18.33.173/documentation-chat/export.php';
 
   try {
     const response = await fetch(phpFileUrl);

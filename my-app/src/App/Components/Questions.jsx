@@ -6,8 +6,10 @@ import { ExportJSON } from './ExportJson';
 export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
 
   const [answers, setAnswers] = useState({
-    1: {},
-    2: {},
+    scope: {},
+    architecture: {},
+    description: {},
+    features: {},
   });
 
   const [skip, setskip] = useState(false)
