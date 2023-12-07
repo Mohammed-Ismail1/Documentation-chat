@@ -2,10 +2,10 @@ export const ExportJSON = async (jsonObject) => {
 
   try {
     // Send a POST request to the PHP script using async/await
-    const response = await fetch('http://192.168.178.84/documentation-chat/import.php', {
+    const response = await fetch('http://172.18.33.177/documentation-chat/import.php', {
       "method": 'POST',
       "headers": {
-        'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json',
       },
       "body": JSON.stringify(jsonObject),
     });
@@ -32,7 +32,7 @@ export const ExportJSON = async (jsonObject) => {
 
 export const importFromJson =  async () => {
   //set the file url to the path of your import.php file
-  const phpFileUrl = 'http://192.168.178.84/documentation-chat/export.php';
+  const phpFileUrl = 'http://172.18.33.177/Database-JSON-Function/includes/json.php';
 
   try {
     const response = await fetch(phpFileUrl);
@@ -41,7 +41,7 @@ export const importFromJson =  async () => {
     }
 
     const jsonData = await response.json();
-
+    console.log(jsonData);
     return jsonData;
   } catch (error) {
     console.error('Fetch error:', error);

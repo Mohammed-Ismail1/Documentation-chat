@@ -1,5 +1,5 @@
 // Import the necessary dependencies
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import { Questions } from './Components/Questions';
 import { importFromJson } from './Components/ExportJson';
@@ -8,22 +8,19 @@ export const Getquestions = await importFromJson()
 // Note: Removed the export statement for `questions`
 
 function DocumentationChat() {
-  const [QuestionShow, setQuestionShow] = useState('scope');
+  const [QuestionShow, setQuestionShow] = useState('0');
   const question = Getquestions; 
   
   const [done, setDone] = useState({
-    scope: false,
-    architecture: false,
-    description: false,
-    features: false,
+    0:{},
+    1:{},
   });
 
   const [skipped, setSkipped] = useState({
-    scope: false,
-    architecture: false,
-    description: false,
-    features: false,
+    0:{},
+    1:{},
   });
+
 
   const renderButtons = () => {
     if (!question) {

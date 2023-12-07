@@ -6,17 +6,13 @@ import { ExportJSON } from './ExportJson';
 export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
 
   const [answers, setAnswers] = useState({
-    scope: {},
-    architecture: {},
-    description: {},
-    features: {},
+    0:{},
+    1:{},
   });
 
   const [/*skip*/, setskip] = useState({
-    scope: {},
-    architecture: {},
-    description: {},
-    features: {},
+    0:{},
+    1:{},
   })
 
  // const [finished, setFinished] = useState(false)
@@ -233,21 +229,21 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
                     {Question.Question}
                     {Question.skip ?
                       <button
-                        className={`unskip ${done[QuestionShow] ? 'skipDisabled' : ''}`}
+                        className={`unskip ${Getquestions[QuestionShow][1].done ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           unskipQ(QuestionShow, Question.id);
                         }}
-                        disabled={done[QuestionShow] || Getquestions[QuestionShow][1].done}
+                        disabled={Getquestions[QuestionShow][1].done}
                       >
                         unskip
                       </button>
                       :
                       <button
-                        className={`skip ${done[QuestionShow] || Getquestions[QuestionShow][1].done ? 'skipDisabled' : ''}`}
+                        className={`skip ${Getquestions[QuestionShow][1].done ? 'skipDisabled' : ''}`}
                         onClick={() => {
                           skipQ(QuestionShow, Question.id);
                         }}
-                        disabled={done[QuestionShow] || Getquestions[QuestionShow][1].done}
+                        disabled={Getquestions[QuestionShow][1].done}
                       >
                         skip
                       </button>
@@ -270,7 +266,7 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
                         textarea.style.height = `${textarea.scrollHeight}px`;
                         textarea.style.lineHeight = "1.5"; // Adjust this value as needed
                       }}
-                      disabled={done[QuestionShow] || Getquestions[QuestionShow][1].done}
+                      disabled={Getquestions[QuestionShow][1].done}
                     />                    
                   }
 
