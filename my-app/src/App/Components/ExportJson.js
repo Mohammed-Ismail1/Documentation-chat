@@ -30,9 +30,9 @@ export const ExportJSON = async (jsonObject) => {
 
 
 
-export const importFromJson =  async () => {
+export const importFromJson = async () => {
   //set the file url to the path of your php file
-  const phpFileUrl = 'URL naar php file om data in database te krijgen';
+  const phpFileUrl = 'http://localhost/Year_3/Database_JSON_Function/Database%20JSON%20Function/json.php';
 
   try {
     const response = await fetch(phpFileUrl);
