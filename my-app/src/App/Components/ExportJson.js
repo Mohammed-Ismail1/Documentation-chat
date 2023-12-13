@@ -2,7 +2,7 @@ export const ExportJSON = async (jsonObject) => {
 
   try {
     // Send a POST request to the PHP script using async/await
-    const response = await fetch('http://172.18.33.177/documentation-chat/import.php', {
+    const response = await fetch('http://URL naar php file om data in database op te slaan', {
       "method": 'POST',
       "headers": {
         'Content-Type': 'application/json',
@@ -31,8 +31,8 @@ export const ExportJSON = async (jsonObject) => {
 
 
 export const importFromJson =  async () => {
-  //set the file url to the path of your import.php file
-  const phpFileUrl = 'http://172.18.33.177/Database-JSON-Function/includes/json.php';
+  //set the file url to the path of your php file
+  const phpFileUrl = 'URL naar php file om data in database te krijgen';
 
   try {
     const response = await fetch(phpFileUrl);
