@@ -143,6 +143,23 @@ body{
     top: 0; /* You can adjust the top value to control the vertical position */
 }
 
+.Save-file{
+    border: none;
+    background-color: rgb(114, 171, 255);
+    border-radius: 50px;
+    font-size: small;
+    font-weight: bold;
+    padding: 10px;
+    margin-right: 25px;
+    cursor: pointer;
+    color: #FFFFFF;
+    margin: 10px 25px 8px 0px;
+
+}
+
+.Save-file:hover{
+    transform: scale(1.05);
+}
 
 .Download{
     border: none;

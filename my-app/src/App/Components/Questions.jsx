@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {Getquestions}  from '../index'
 import { ExportJSON } from './ExportJson';
-
+import { download } from './download';
 // This function will handle the answers and the Questions
 export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
 
@@ -44,9 +44,7 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
 
   const selectedQuestions = Getquestions[QuestionShow] ? Getquestions[QuestionShow].filter((question) => question.id) : [];
   const isMounted = useRef(false);// useRef() is used to prevent a re-render when a mutable value is stored or changed
-  const exportData = ExportJSON(filteredData)
 
-  console.log(exportData)
   useEffect(() => {
     // Set initial state based on QuestionShow only when the component mounts
 
@@ -215,7 +213,8 @@ export function Questions(QuestionShow, done, setDone, skipped, setSkipped) {
               <div className="toolbar">
                 {/*<input type="file" className="imageInput" id="imageInput" accept="image/*" />
                 <label htmlFor="imageInput" className="imageInput-label"></label>*/}
-                <button className='Download'>Download file</button>
+                <button className='Save-file' onClick={() => ExportJSON(filteredData)}>Save file</button>
+                <button className='Download' onClick={() => download(Getquestions)}>Download file</button>
               </div>
             </div>
           </div>
