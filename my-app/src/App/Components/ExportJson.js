@@ -2,7 +2,7 @@ export const ExportJSON = async (jsonObject) => {
 
   try {
     // Send a POST request to the PHP script using async/await
-    const response = await fetch('http://192.168.1.90/documentation-chat/import.php', {
+    const response = await fetch('http://localhost/192.168.178.109/jsondocuchat/json.php', {
       "method": 'POST',
       "headers": {
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export const ExportJSON = async (jsonObject) => {
 
 export const importFromJson =  async () => {
   //set the file url to the path of your import.php file
-  const phpFileUrl = 'http://192.168.1.90/Database-JSON-Function/includes/json.php';
+  const phpFileUrl = 'http://localhost/jsondocuchat/json.php';
 
   try {
     const response = await fetch(phpFileUrl);
